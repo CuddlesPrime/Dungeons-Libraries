@@ -1,0 +1,11 @@
+{
+  "image": "public.ecr.aws/cody-bolling/java-dev-container:latest",
+  "mounts": [
+    "source=${localEnv:USERPROFILE}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:USERPROFILE}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached"
+  ],
+  "runArgs": [
+    "--name",
+    "dungeons-libraries"
+  ]
+}
