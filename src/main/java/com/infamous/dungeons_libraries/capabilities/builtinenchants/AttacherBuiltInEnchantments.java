@@ -18,7 +18,7 @@ public class AttacherBuiltInEnchantments {
 
     private static class BuiltInEnchantmentsProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "built_in_enchantments");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "built_in_enchantments");
         private final BuiltInEnchantments backend;
         private final LazyOptional<BuiltInEnchantments> optionalData;
 
@@ -45,7 +45,7 @@ public class AttacherBuiltInEnchantments {
 
     public static void attach(final AttachCapabilitiesEvent<ItemStack> event) {
         final AttacherBuiltInEnchantments.BuiltInEnchantmentsProvider provider = new AttacherBuiltInEnchantments.BuiltInEnchantmentsProvider(event.getObject());
-        
+
         if ( event.getObject().isEnchantable() && event.getObject().getMaxStackSize() == 1 ) {
             event.addCapability(AttacherBuiltInEnchantments.BuiltInEnchantmentsProvider.IDENTIFIER, provider);
         }

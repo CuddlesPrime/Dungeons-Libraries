@@ -10,7 +10,7 @@ import static com.infamous.dungeons_libraries.DungeonsLibraries.MODID;
 
 //@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GuiElementConfigRegistry {
-    public static final ResourceLocation ELEMENT_CONFIG_BUILTIN_RESOURCELOCATION = new ResourceLocation(MODID, "gui/element");
+    public static final ResourceLocation ELEMENT_CONFIG_BUILTIN_RESOURCELOCATION = ResourceLocation.fromNamespaceAndPath(MODID, "gui/element");
 
     public static final CodecJsonDataManager<GuiElementConfig> GUI_ELEMENT_CONFIGS = new CodecJsonDataManager<>("gui/element", GuiElementConfig.CODEC);
 

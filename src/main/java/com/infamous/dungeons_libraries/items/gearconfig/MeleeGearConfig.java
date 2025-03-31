@@ -16,7 +16,7 @@ import static com.infamous.dungeons_libraries.data.Codecs.ITEM_RARITY_CODEC;
 
 public class MeleeGearConfig {
 
-    public static final MeleeGearConfig DEFAULT = new MeleeGearConfig(new ArrayList<>(), new ArrayList<>(), new ResourceLocation("minecraft:iron"), false, false, false, false, Rarity.COMMON, 1);
+    public static final MeleeGearConfig DEFAULT = new MeleeGearConfig(new ArrayList<>(), new ArrayList<>(), ResourceLocation.parse("minecraft:iron"), false, false, false, false, Rarity.COMMON, 1);
 
     public static final Codec<MeleeGearConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             GearConfigAttributeModifier.CODEC.listOf().optionalFieldOf("attributes", new ArrayList<>()).forGetter(MeleeGearConfig::getAttributes),

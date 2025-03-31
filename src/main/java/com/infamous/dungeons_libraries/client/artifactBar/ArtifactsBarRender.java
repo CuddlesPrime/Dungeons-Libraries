@@ -29,7 +29,7 @@ import static com.infamous.dungeons_libraries.DungeonsLibraries.MODID;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = MODID)
 public class ArtifactsBarRender {
-    private static final ResourceLocation ARTIFACT_BAR_RESOURCE = new ResourceLocation(MODID, "textures/gui/artifact_bar.png");
+    private static final ResourceLocation ARTIFACT_BAR_RESOURCE = ResourceLocation.fromNamespaceAndPath(MODID, "textures/gui/artifact_bar.png");
 
     @SubscribeEvent
     public static void displayArtifactBar(RenderGuiOverlayEvent.Post event) {
@@ -38,7 +38,7 @@ public class ArtifactsBarRender {
 
         if (event.getOverlay().equals(VanillaGuiOverlay.HOTBAR.type()) && mc.getCameraEntity() instanceof Player renderPlayer) {
             if (renderPlayer == null) return;
-            GuiElementConfig guiElementConfig = GuiElementConfigRegistry.getConfig(new ResourceLocation(MODID, "artifact_bar"));
+            GuiElementConfig guiElementConfig = GuiElementConfigRegistry.getConfig(ResourceLocation.fromNamespaceAndPath(MODID, "artifact_bar"));
             if (guiElementConfig.isHidden()) return;
 
 

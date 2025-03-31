@@ -24,7 +24,7 @@ import static com.infamous.dungeons_libraries.DungeonsLibraries.MODID;
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CuriosIntegration {
 
-    public static final ResourceLocation CURIOS_ICON_TEXTURE = new ResourceLocation(MODID, "icon/empty_artifact_slot");
+    public static final ResourceLocation CURIOS_ICON_TEXTURE = ResourceLocation.fromNamespaceAndPath(MODID, "icon/empty_artifact_slot");
 
     public static final String ARTIFACT_IDENTIFIER = "artifact";
 

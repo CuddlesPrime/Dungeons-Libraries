@@ -22,7 +22,7 @@ import static com.infamous.dungeons_libraries.attribute.AttributeRegistry.SOUL_C
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = MODID)
 public class SoulBarRender {
-    private static final ResourceLocation SOUL_BAR_RESOURCE = new ResourceLocation(MODID, "textures/misc/soul_bar.png");
+    private static final ResourceLocation SOUL_BAR_RESOURCE = ResourceLocation.fromNamespaceAndPath(MODID, "textures/misc/soul_bar.png");
     public static final int SOUL_LEVEL_COLOR = 0x10B0E4;
 
     @SubscribeEvent
@@ -34,7 +34,7 @@ public class SoulBarRender {
         final Minecraft mc = Minecraft.getInstance();
 
         if (event.getOverlay().equals(VanillaGuiOverlay.HOTBAR.type()) && mc.getCameraEntity() instanceof Player) {
-            GuiElementConfig guiElementConfig = GuiElementConfigRegistry.getConfig(new ResourceLocation(MODID, "soul_bar"));
+            GuiElementConfig guiElementConfig = GuiElementConfigRegistry.getConfig(ResourceLocation.fromNamespaceAndPath(MODID, "soul_bar"));
             if (guiElementConfig.isHidden()) return;
             //draw souls
             RenderSystem.setShaderTexture(0, SOUL_BAR_RESOURCE);

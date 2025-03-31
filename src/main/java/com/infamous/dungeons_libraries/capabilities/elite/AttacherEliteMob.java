@@ -1,12 +1,10 @@
 package com.infamous.dungeons_libraries.capabilities.elite;
 
 import com.infamous.dungeons_libraries.capabilities.ModCapabilities;
-import com.infamous.dungeons_libraries.capabilities.builtinenchants.BuiltInEnchantments;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -21,7 +19,7 @@ public class AttacherEliteMob {
 
     private static class EliteMobProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "elite_mob");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "elite_mob");
         private final EliteMob backend = new EliteMob();
         private final LazyOptional<EliteMob> optionalData = LazyOptional.of(() -> backend);
 

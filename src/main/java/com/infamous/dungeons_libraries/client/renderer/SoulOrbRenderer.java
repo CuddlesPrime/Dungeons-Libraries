@@ -19,7 +19,7 @@ import static com.infamous.dungeons_libraries.DungeonsLibraries.MODID;
 
 
 public class SoulOrbRenderer extends EntityRenderer<SoulOrbEntity> {
-    private static final ResourceLocation SOUL_ORB_LOCATION = new ResourceLocation(MODID, "textures/entity/soul_orb.png");
+    private static final ResourceLocation SOUL_ORB_LOCATION = ResourceLocation.fromNamespaceAndPath(MODID, "textures/entity/soul_orb.png");
     private static final RenderType RENDER_TYPE = RenderType.itemEntityTranslucentCull(SOUL_ORB_LOCATION);
 
     public SoulOrbRenderer(EntityRendererProvider.Context context) {

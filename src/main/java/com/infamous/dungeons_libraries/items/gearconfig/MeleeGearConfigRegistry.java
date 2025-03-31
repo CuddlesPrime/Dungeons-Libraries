@@ -9,7 +9,7 @@ import java.util.Map;
 import static com.infamous.dungeons_libraries.DungeonsLibraries.MODID;
 
 public class MeleeGearConfigRegistry {
-    public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = new ResourceLocation(MODID, "gear_config");
+    public static final ResourceLocation GEAR_CONFIG_BUILTIN_RESOURCELOCATION = ResourceLocation.fromNamespaceAndPath(MODID, "gear_config");
 
     public static final CodecJsonDataManager<MeleeGearConfig> MELEE_GEAR_CONFIGS = new CodecJsonDataManager<>("gearconfig/melee", MeleeGearConfig.CODEC);
 

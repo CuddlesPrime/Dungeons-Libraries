@@ -142,7 +142,7 @@ public class Leader implements INBTSerializable<CompoundTag>, Master {
             minionUUIDs.add(compoundnbt.getUUID("uuid"));
         }
         if (tag.contains(LEVEL_KEY)) {
-            this.setLevelOnLoad(new ResourceLocation(tag.getString(LEVEL_KEY)));
+            this.setLevelOnLoad(ResourceLocation.parse(tag.getString(LEVEL_KEY)));
         }
     }
 

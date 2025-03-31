@@ -19,7 +19,7 @@ public class AttacherPlayerRewards {
 
     private static class PlayerRewardsProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "player_rewards");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "player_rewards");
         private final PlayerRewards backend = new PlayerRewards();
         private final LazyOptional<PlayerRewards> optionalData = LazyOptional.of(() -> backend);
 

@@ -19,7 +19,7 @@ public class AttacherTimers {
 
     private static class TimersProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "timers");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "timers");
         private final Timers backend = new Timers();
         private final LazyOptional<Timers> optionalData = LazyOptional.of(() -> backend);
 

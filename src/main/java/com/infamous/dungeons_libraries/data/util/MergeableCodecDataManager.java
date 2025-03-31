@@ -120,7 +120,7 @@ public class MergeableCodecDataManager<RAW, FINE> extends SimplePreparableReload
             List<RAW> raws = new ArrayList<>();
             ResourceLocation fullId = entry.getKey();
             String fullPath = fullId.getPath(); // includes folderName/ and .json
-            ResourceLocation id = new ResourceLocation(
+            ResourceLocation id = ResourceLocation.fromNamespaceAndPath(
                     fullId.getNamespace(),
                     fullPath.substring(this.folderName.length() + 1, fullPath.length() - JSON_EXTENSION_LENGTH));
 

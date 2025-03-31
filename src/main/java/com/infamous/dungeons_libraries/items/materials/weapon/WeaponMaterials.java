@@ -15,12 +15,12 @@ public class WeaponMaterials {
     public static final DefaultsCodecJsonDataManager<Tier> WEAPON_MATERIALS = new DefaultsCodecJsonDataManager<>("material/weapon", DungeonsWeaponMaterial.CODEC);
 
     public static void setupVanillaMaterials() {
-        WEAPON_MATERIALS.addDefault(new ResourceLocation("minecraft:wood"), WOOD);
-        WEAPON_MATERIALS.addDefault(new ResourceLocation("minecraft:stone"), STONE);
-        WEAPON_MATERIALS.addDefault(new ResourceLocation("minecraft:iron"), IRON);
-        WEAPON_MATERIALS.addDefault(new ResourceLocation("minecraft:diamond"), DIAMOND);
-        WEAPON_MATERIALS.addDefault(new ResourceLocation("minecraft:gold"), GOLD);
-        WEAPON_MATERIALS.addDefault(new ResourceLocation("minecraft:netherite"), NETHERITE);
+        WEAPON_MATERIALS.addDefault(ResourceLocation.parse("minecraft:wood"), WOOD);
+        WEAPON_MATERIALS.addDefault(ResourceLocation.parse("minecraft:stone"), STONE);
+        WEAPON_MATERIALS.addDefault(ResourceLocation.parse("minecraft:iron"), IRON);
+        WEAPON_MATERIALS.addDefault(ResourceLocation.parse("minecraft:diamond"), DIAMOND);
+        WEAPON_MATERIALS.addDefault(ResourceLocation.parse("minecraft:gold"), GOLD);
+        WEAPON_MATERIALS.addDefault(ResourceLocation.parse("minecraft:netherite"), NETHERITE);
     }
 
     public static Tier getWeaponMaterial(ResourceLocation resourceLocation) {

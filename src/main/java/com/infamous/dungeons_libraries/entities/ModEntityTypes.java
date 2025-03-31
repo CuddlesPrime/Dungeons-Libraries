@@ -16,7 +16,7 @@ public final class ModEntityTypes {
     public static final RegistryObject<EntityType<SoulOrbEntity>> SOUL_ORB = ENTITY_TYPES.register("soul_orb", () ->
             EntityType.Builder.<SoulOrbEntity>of(SoulOrbEntity::new, MobCategory.MISC)
                     .sized(0.5F, 0.5F).clientTrackingRange(6).updateInterval(20)
-                    .build(new ResourceLocation(MODID, "soul_orb").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "soul_orb").toString())
     );
 
 }

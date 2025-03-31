@@ -144,7 +144,7 @@ public class Follower implements INBTSerializable<CompoundTag>, Minion {
             this.setLeaderUUID(tag.getUUID(LEADER_KEY));
         }
         if (tag.contains(LEVEL_KEY)) {
-            this.setLevelOnLoad(new ResourceLocation(tag.getString(LEVEL_KEY)));
+            this.setLevelOnLoad(ResourceLocation.parse(tag.getString(LEVEL_KEY)));
         }
         if (tag.contains(SUMMON_FLAG_KEY)) {
             this.setSummon(tag.getBoolean(SUMMON_FLAG_KEY));

@@ -10,11 +10,11 @@ import static com.infamous.dungeons_libraries.utils.ResourceLocationHelper.modLo
 
 public class ItemTagWrappers {
 
-    public static final TagKey<Item> CURIOS_ARTIFACTS = tag(new ResourceLocation("curios", "artifact"));
+    public static final TagKey<Item> CURIOS_ARTIFACTS = tag(ResourceLocation.fromNamespaceAndPath("curios", "artifact"));
     public static final TagKey<Item> ARTIFACT_REPAIR_ITEMS = tag(modLoc("artifact_repair_items"));
 
     private static TagKey<Item> tag(String name) {
-        return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(DungeonsLibraries.MODID, name));
+        return TagKey.create(Registry.ITEM_REGISTRY, ResourceLocation.fromNamespaceAndPath(DungeonsLibraries.MODID, name));
     }
 
     private static TagKey<Item> tag(ResourceLocation resourceLocation) {

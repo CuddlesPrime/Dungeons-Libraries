@@ -19,7 +19,7 @@ public class AttacherFollower {
 
     private static class FollowerProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "minion");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "minion");
         private final Follower backend = new Follower();
         private final LazyOptional<Follower> optionalData = LazyOptional.of(() -> backend);
 

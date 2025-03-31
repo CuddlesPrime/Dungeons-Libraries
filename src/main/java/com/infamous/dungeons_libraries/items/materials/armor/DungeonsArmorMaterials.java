@@ -20,13 +20,13 @@ public class DungeonsArmorMaterials {
     public static final Map<ArmorMaterial, ArmorMaterialBaseType> baseArmorMaterials = new HashMap<>();
 
     public static void setupVanillaMaterials() {
-        addDefaultArmorMaterial(LEATHER, ArmorMaterialBaseType.LEATHER, new ResourceLocation("minecraft:leather"));
-        addDefaultArmorMaterial(CHAIN, ArmorMaterialBaseType.METAL, new ResourceLocation("minecraft:chainmail"));
-        addDefaultArmorMaterial(IRON, ArmorMaterialBaseType.METAL, new ResourceLocation("minecraft:iron"));
-        addDefaultArmorMaterial(GOLD, ArmorMaterialBaseType.METAL, new ResourceLocation("minecraft:gold"));
-        addDefaultArmorMaterial(DIAMOND, ArmorMaterialBaseType.GEM, new ResourceLocation("minecraft:diamond"));
-        addDefaultArmorMaterial(TURTLE, ArmorMaterialBaseType.LEATHER, new ResourceLocation("minecraft:turtle"));
-        addDefaultArmorMaterial(NETHERITE, ArmorMaterialBaseType.METAL, new ResourceLocation("minecraft:netherite"));
+        addDefaultArmorMaterial(LEATHER, ArmorMaterialBaseType.LEATHER, ResourceLocation.parse("minecraft:leather"));
+        addDefaultArmorMaterial(CHAIN, ArmorMaterialBaseType.METAL, ResourceLocation.parse("minecraft:chainmail"));
+        addDefaultArmorMaterial(IRON, ArmorMaterialBaseType.METAL, ResourceLocation.parse("minecraft:iron"));
+        addDefaultArmorMaterial(GOLD, ArmorMaterialBaseType.METAL, ResourceLocation.parse("minecraft:gold"));
+        addDefaultArmorMaterial(DIAMOND, ArmorMaterialBaseType.GEM, ResourceLocation.parse("minecraft:diamond"));
+        addDefaultArmorMaterial(TURTLE, ArmorMaterialBaseType.LEATHER, ResourceLocation.parse("minecraft:turtle"));
+        addDefaultArmorMaterial(NETHERITE, ArmorMaterialBaseType.METAL, ResourceLocation.parse("minecraft:netherite"));
     }
 
     public static void addDefaultArmorMaterial(ArmorMaterials material, ArmorMaterialBaseType baseType, ResourceLocation resourceLocation) {

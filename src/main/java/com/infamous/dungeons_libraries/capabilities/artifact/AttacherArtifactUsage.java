@@ -19,7 +19,7 @@ public class AttacherArtifactUsage {
 
     private static class ArtifactUsageProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "artifact_usage");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "artifact_usage");
         private final ArtifactUsage backend = new ArtifactUsage();
         private final LazyOptional<ArtifactUsage> optionalData = LazyOptional.of(() -> backend);
 

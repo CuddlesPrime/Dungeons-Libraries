@@ -72,7 +72,7 @@ public class PlayerRewards implements INBTSerializable<CompoundTag> {
         for (Tag inbt : listNBT) {
             if (inbt instanceof CompoundTag) {
                 CompoundTag compoundNBT1 = (CompoundTag) inbt;
-                ResourceLocation resourceLocation = new ResourceLocation(compoundNBT1.getString("source"));
+                ResourceLocation resourceLocation = ResourceLocation.parse(compoundNBT1.getString("source"));
                 Integer amount = compoundNBT1.getInt("amount");
                 this.setPlayerRewards(resourceLocation, amount);
             }

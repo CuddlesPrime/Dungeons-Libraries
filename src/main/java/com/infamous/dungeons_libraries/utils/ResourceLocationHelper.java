@@ -5,10 +5,10 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ResourceLocationHelper {
     public static ResourceLocation modLoc(String path) {
-        return new ResourceLocation(DungeonsLibraries.MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(DungeonsLibraries.MODID, path);
     }
 
     public static ResourceLocation forgeLoc(String path) {
-        return new ResourceLocation("forge", path);
+        return ResourceLocation.fromNamespaceAndPath("forge", path);
     }
 }

@@ -19,7 +19,7 @@ public class AttacherLeader {
 
     private static class LeaderProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "master");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "master");
         private final Leader backend = new Leader();
         private final LazyOptional<Leader> optionalData = LazyOptional.of(() -> backend);
 
