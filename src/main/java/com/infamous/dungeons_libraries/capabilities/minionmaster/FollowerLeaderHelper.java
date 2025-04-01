@@ -17,7 +17,6 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
-import net.minecraft.world.entity.monster.Monster;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class FollowerLeaderHelper {
         try {
             if (horseEntity.getOwnerUUID() != null) {
                 UUID ownerUniqueId = horseEntity.getOwnerUUID();
-                return ownerUniqueId == null ? null : horseEntity.level.getPlayerByUUID(ownerUniqueId);
+                return ownerUniqueId == null ? null : horseEntity.level().getPlayerByUUID(ownerUniqueId);
             } else return null;
         } catch (IllegalArgumentException var2) {
             return null;
@@ -69,33 +68,33 @@ public class FollowerLeaderHelper {
         return mobEntity.getNavigation() instanceof GroundPathNavigation || mobEntity.getNavigation() instanceof FlyingPathNavigation;
     }
 
-    private void makeFollowerOf(LivingEntity livingEntity, LivingEntity nearbyEntity) {
-        if (nearbyEntity instanceof Monster) {
-            Monster mobEntity = (Monster) nearbyEntity;
-            Leader leaderCapability = FollowerLeaderHelper.getLeaderCapability(livingEntity);
-            Follower minionCapability = FollowerLeaderHelper.getFollowerCapability(nearbyEntity);
-            leaderCapability.addFollower(mobEntity);
-            minionCapability.setLeader(livingEntity);
-            minionCapability.setGoalsAdded(false);
-            ((Monster) nearbyEntity).setTarget(null);
-            addFollowerGoals(mobEntity);
-        }
-    }
+    // private void makeFollowerOf(LivingEntity livingEntity, LivingEntity nearbyEntity) {
+    //     if (nearbyEntity instanceof Monster) {
+    //         Monster mobEntity = (Monster) nearbyEntity;
+    //         Leader leaderCapability = FollowerLeaderHelper.getLeaderCapability(livingEntity);
+    //         Follower minionCapability = FollowerLeaderHelper.getFollowerCapability(nearbyEntity);
+    //         leaderCapability.addFollower(mobEntity);
+    //         minionCapability.setLeader(livingEntity);
+    //         minionCapability.setGoalsAdded(false);
+    //         ((Monster) nearbyEntity).setTarget(null);
+    //         addFollowerGoals(mobEntity);
+    //     }
+    // }
 
-    private void makeTemporaryFollowerOf(LivingEntity livingEntity, LivingEntity nearbyEntity, int followerDuration, boolean revertsOnExpiration) {
-        if (nearbyEntity instanceof Mob mob) {
-            Leader leaderCapability = FollowerLeaderHelper.getLeaderCapability(livingEntity);
-            Follower minionCapability = FollowerLeaderHelper.getFollowerCapability(nearbyEntity);
-            leaderCapability.addFollower(mob);
-            minionCapability.setLeader(livingEntity);
-            minionCapability.setTemporary(true);
-            minionCapability.setRevertsOnExpiration(revertsOnExpiration);
-            minionCapability.setFollowerDuration(followerDuration);
-            minionCapability.setGoalsAdded(false);
-            mob.setTarget(null);
-            addFollowerGoals(mob);
-        }
-    }
+    // private void makeTemporaryFollowerOf(LivingEntity livingEntity, LivingEntity nearbyEntity, int followerDuration, boolean revertsOnExpiration) {
+    //     if (nearbyEntity instanceof Mob mob) {
+    //         Leader leaderCapability = FollowerLeaderHelper.getLeaderCapability(livingEntity);
+    //         Follower minionCapability = FollowerLeaderHelper.getFollowerCapability(nearbyEntity);
+    //         leaderCapability.addFollower(mob);
+    //         minionCapability.setLeader(livingEntity);
+    //         minionCapability.setTemporary(true);
+    //         minionCapability.setRevertsOnExpiration(revertsOnExpiration);
+    //         minionCapability.setFollowerDuration(followerDuration);
+    //         minionCapability.setGoalsAdded(false);
+    //         mob.setTarget(null);
+    //         addFollowerGoals(mob);
+    //     }
+    // }
 
     public static void addFollowerGoals(Mob mobEntity) {
         Follower minionCap = getFollowerCapability(mobEntity);
