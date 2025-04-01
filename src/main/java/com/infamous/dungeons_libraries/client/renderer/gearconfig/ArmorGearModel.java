@@ -2,9 +2,9 @@ package com.infamous.dungeons_libraries.client.renderer.gearconfig;
 
 import com.infamous.dungeons_libraries.items.gearconfig.ArmorGear;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
-public class ArmorGearModel<T extends ArmorGear> extends AnimatedGeoModel<T> {
+public class ArmorGearModel<T extends ArmorGear> extends GeoModel<T> {
     @Override
     public ResourceLocation getModelResource(ArmorGear object) {
         return object.getModelLocation();
