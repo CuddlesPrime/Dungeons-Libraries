@@ -29,7 +29,7 @@ public class FollowerFollowLeaderGoal extends Goal {
 
     public FollowerFollowLeaderGoal(Mob mobEntity, double followSpeed, float maxDist, float minDist, boolean passesThroughLeaves) {
         this.mobEntity = mobEntity;
-        this.world = mobEntity.level;
+        this.world = mobEntity.level();
         this.followSpeed = followSpeed;
         this.navigator = mobEntity.getNavigation();
         this.maxDist = maxDist;
