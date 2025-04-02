@@ -18,7 +18,7 @@ public class TimerEvents {
     @SubscribeEvent
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event) {
         Timers timersCapability = TimersHelper.getTimersCapability(event.player);
-        if (event.phase == TickEvent.Phase.START && !event.player.isSpectator() && !event.player.level.isClientSide()) {
+        if (event.phase == TickEvent.Phase.START && !event.player.isSpectator() && !event.player.level().isClientSide()) {
             timersCapability.tickTimers();
         }
     }
