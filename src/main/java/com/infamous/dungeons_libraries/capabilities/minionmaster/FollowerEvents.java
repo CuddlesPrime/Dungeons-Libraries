@@ -10,7 +10,6 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -30,7 +29,7 @@ public class FollowerEvents {
     @SubscribeEvent
     public static void onSetAttackTarget(LivingChangeTargetEvent event) {
         LivingEntity attacker = event.getEntity();
-        Level level = attacker.level;
+        Level level = attacker.level();
         LivingEntity target = event.getNewTarget();
         if (attacker instanceof Mob && target instanceof Mob) {
             if (AbilityHelper.isAlly(attacker, target)) {
@@ -67,7 +66,7 @@ public class FollowerEvents {
     @SubscribeEvent
     public static void onLivingEntityTick(LivingEvent.LivingTickEvent event) {
         LivingEntity entityLiving = event.getEntity();
-        if (entityLiving.level.isClientSide) return;
+        if (entityLiving.level().isClientSide) return;
         Follower cap = getFollowerCapability(entityLiving);
         if (cap.isFollower()) {
             if (cap.isTemporary()) {
@@ -116,7 +115,7 @@ public class FollowerEvents {
 
     @SubscribeEvent
     public static void onFollowerDeath(LivingDeathEvent event) {
-        if (!event.getEntity().level.isClientSide() && FollowerLeaderHelper.isFollower(event.getEntity())) {
+        if (!event.getEntity().level().isClientSide() && FollowerLeaderHelper.isFollower(event.getEntity())) {
             LivingEntity livingEntity = event.getEntity();
             Follower FollowerCapability = getFollowerCapability(livingEntity);
             LivingEntity summoner = FollowerCapability.getLeader();

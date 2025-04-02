@@ -1,7 +1,7 @@
 package com.infamous.dungeons_libraries.capabilities.minionmaster;
 
 import com.infamous.dungeons_libraries.DungeonsLibraries;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -32,7 +32,7 @@ public class Follower implements INBTSerializable<CompoundTag>, Minion {
     @Nullable
     public LivingEntity getLeader() {
         if (this.leader == null && this.leaderUUID != null && this.levelOnLoad != null) {
-            ResourceKey<Level> registrykey1 = ResourceKey.create(Registry.DIMENSION_REGISTRY, this.levelOnLoad);
+            ResourceKey<Level> registrykey1 = ResourceKey.create(Registries.DIMENSION, this.levelOnLoad);
             MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
             if(server == null){
                 DungeonsLibraries.LOGGER.debug("Tried and failed to query leader by UUID from a Follower with no MinecraftServer present");
@@ -53,7 +53,7 @@ public class Follower implements INBTSerializable<CompoundTag>, Minion {
         this.leader = leader;
         if (leader != null) {
             this.leaderUUID = leader.getUUID();
-            this.levelOnLoad = leader.level.dimension().location();
+            this.levelOnLoad = leader.level().dimension().location();
         } else {
             this.leaderUUID = null;
             this.levelOnLoad = null;
@@ -128,7 +128,7 @@ public class Follower implements INBTSerializable<CompoundTag>, Minion {
         CompoundTag tag = new CompoundTag();
         if (this.getLeader() != null) {
             tag.putUUID(LEADER_KEY, this.leaderUUID);
-            ResourceLocation location = this.getLeader().level.dimension().location();
+            ResourceLocation location = this.getLeader().level().dimension().location();
             tag.putString(LEVEL_KEY, location.toString());
         }
         tag.putBoolean(SUMMON_FLAG_KEY, this.isSummon());

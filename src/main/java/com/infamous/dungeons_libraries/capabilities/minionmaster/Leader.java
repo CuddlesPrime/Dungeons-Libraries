@@ -1,7 +1,7 @@
 package com.infamous.dungeons_libraries.capabilities.minionmaster;
 
 import com.infamous.dungeons_libraries.summon.SummonConfigRegistry;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceKey;
@@ -81,7 +81,7 @@ public class Leader implements INBTSerializable<CompoundTag>, Master {
         if (entities != null) return entities;
         if (entityUUIDs != null && this.levelOnLoad != null) {
             if (entityUUIDs.isEmpty()) return new HashSet<>();
-            ResourceKey<Level> registrykey1 = ResourceKey.create(Registry.DIMENSION_REGISTRY, this.levelOnLoad);
+            ResourceKey<Level> registrykey1 = ResourceKey.create(Registries.DIMENSION, this.levelOnLoad);
             MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
             ServerLevel world = server.getLevel(registrykey1);
             if (world != null) {
@@ -117,10 +117,10 @@ public class Leader implements INBTSerializable<CompoundTag>, Master {
         });
         nbt.put("followers", minions);
         if (!this.getSummonedMobs().isEmpty()) {
-            ResourceLocation location = this.getSummonedMobs().get(0).level.dimension().location();
+            ResourceLocation location = this.getSummonedMobs().get(0).level().dimension().location();
             nbt.putString(LEVEL_KEY, location.toString());
         } else if (!this.getOtherFollowers().isEmpty()) {
-            ResourceLocation location = this.getOtherFollowers().get(0).level.dimension().location();
+            ResourceLocation location = this.getOtherFollowers().get(0).level().dimension().location();
             nbt.putString(LEVEL_KEY, location.toString());
         }
         return nbt;
