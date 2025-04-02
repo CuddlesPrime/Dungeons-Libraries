@@ -1,6 +1,6 @@
 package com.infamous.dungeons_libraries.datagen;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -10,7 +10,7 @@ public class DataGenerators {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
-        generator.addProvider(event.includeClient(), new ModLanguageProvider(generator, "en_us"));
+        PackOutput output = event.getGenerator().getPackOutput();
+        event.getGenerator().addProvider(event.includeClient(), new ModLanguageProvider(output, "en_us"));
     }
 }
