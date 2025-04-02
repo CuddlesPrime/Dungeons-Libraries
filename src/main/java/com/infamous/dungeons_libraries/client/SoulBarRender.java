@@ -6,9 +6,8 @@ import com.infamous.dungeons_libraries.client.gui.elementconfig.GuiElementConfig
 import com.infamous.dungeons_libraries.client.gui.elementconfig.GuiElementConfigRegistry;
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -23,11 +22,12 @@ import static com.infamous.dungeons_libraries.attribute.AttributeRegistry.SOUL_C
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = MODID)
 public class SoulBarRender {
     private static final ResourceLocation SOUL_BAR_RESOURCE = ResourceLocation.fromNamespaceAndPath(MODID, "textures/misc/soul_bar.png");
+    private static final ResourceLocation GUI_ICONS_LOCATION = ResourceLocation.parse("textures/gui/icons.png");
     public static final int SOUL_LEVEL_COLOR = 0x10B0E4;
 
     @SubscribeEvent
     public static void displaySoulBar(RenderGuiOverlayEvent.Post event) {
-        PoseStack matrixStack = event.getPoseStack();
+        GuiGraphics guiGraphics = event.getGuiGraphics();
         Window sr = event.getWindow();
         int scaledWidth = sr.getGuiScaledWidth();
         int scaledHeight = sr.getGuiScaledHeight();
@@ -58,8 +58,8 @@ public class SoulBarRender {
             if (souls > 0) {
                 int backgroundBarWidth = guiElementConfig.getSizeX();
                 int foregroundBarWidth = (int) (souls / maxSouls * guiElementConfig.getSizeX());
-                GuiComponent.blit(matrixStack, xPos, yPos, 0, 0, backgroundBarWidth, 5, 121, 10);
-                GuiComponent.blit(matrixStack, xPos, yPos, 0, 5, foregroundBarWidth, 5, 121, 10);
+                guiGraphics.blit(SOUL_BAR_RESOURCE, xPos, yPos, 0, 0, backgroundBarWidth, 5, 121, 10);
+                guiGraphics.blit(SOUL_BAR_RESOURCE, xPos, yPos, 0, 5, foregroundBarWidth, 5, 121, 10);
             }
             mc.getProfiler().pop();
 
@@ -68,15 +68,12 @@ public class SoulBarRender {
                 String soulLevel = "" + souls;
                 int baseXPos = xPos + (guiElementConfig.getSizeX() / 2) - (mc.font.width(soulLevel) / 2);
                 int baseYPos = scaledHeight - guiElementConfig.getSizeY() - mc.font.lineHeight;
-                GuiComponent.drawString(matrixStack, mc.font, soulLevel, baseXPos, baseYPos, SOUL_LEVEL_COLOR);
+                guiGraphics.drawString(mc.font, soulLevel, baseXPos, baseYPos, SOUL_LEVEL_COLOR);
                 mc.getProfiler().pop();
             }
 
-            RenderSystem.setShaderTexture(0, GuiComponent.GUI_ICONS_LOCATION);
+            RenderSystem.setShaderTexture(0, GUI_ICONS_LOCATION);
             RenderSystem.disableBlend();
         }
-
-
     }
-
 }

@@ -52,8 +52,6 @@ public class ArtifactsBarRender {
 
             RenderSystem.setShaderTexture(0, GUI_ICONS_LOCATION);
         }
-
-
     }
 
     private static void renderBar(GuiGraphics guiGraphics, Player renderPlayer, int x, int y, ICuriosItemHandler iCuriosItemHandler) {
