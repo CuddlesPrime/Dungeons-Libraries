@@ -39,7 +39,7 @@ public class SoulsCommand {
         if (targets.isEmpty()) {
             throw ERROR_ADD_FAILED.create();
         } else {
-            source.sendSuccess(Component.translatable("commands.souls.add.success"), true);
+            source.sendSuccess(() -> Component.translatable("commands.souls.add.success"), true);
         }
         return targets.size();
     }
@@ -51,7 +51,7 @@ public class SoulsCommand {
         if (targets.isEmpty()) {
             throw ERROR_SET_FAILED.create();
         } else {
-            source.sendSuccess(Component.translatable("commands.souls.set.success"), true);
+            source.sendSuccess(() -> Component.translatable("commands.souls.add.success"), true);
         }
         return targets.size();
     }
