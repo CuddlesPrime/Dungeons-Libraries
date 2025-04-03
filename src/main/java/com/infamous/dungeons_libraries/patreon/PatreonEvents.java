@@ -26,9 +26,4 @@ public class PatreonEvents {
         loadPatreons(() -> {
         });
     }
-
-    private static void addConsumer(Consumer<UUID> consumer) {
-        PATREON_JOIN_CONSUMERS.add(consumer);
-    }
-
 }

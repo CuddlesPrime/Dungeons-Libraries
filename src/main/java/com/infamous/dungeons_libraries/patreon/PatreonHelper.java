@@ -30,7 +30,7 @@ public class PatreonHelper {
                 final InputStream responseBody = conn.getInputStream();
                 final BufferedReader reader = new BufferedReader(new InputStreamReader(responseBody));
 
-                JsonArray asJsonArray = new JsonParser().parse(reader).getAsJsonArray();
+                JsonArray asJsonArray = JsonParser.parseReader(reader).getAsJsonArray();
                 patreons.clear();
                 asJsonArray.forEach(jsonElement -> {
                     if (jsonElement.isJsonObject()) {
