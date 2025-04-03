@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -62,13 +62,13 @@ public class DungeonsArmorMaterial implements ArmorMaterial {
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slot) {
-        return this.damageReductionAmounts.get(slot.getIndex());
+    public int getDefenseForType(ArmorItem.Type type) {
+        return this.damageReductionAmounts.get(type.getSlot().getIndex());
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slot) {
-        return BASE_DURABILITY_ARRAY[slot.getIndex()] * this.durability;
+    public int getDurabilityForType(ArmorItem.Type type) {
+        return BASE_DURABILITY_ARRAY[type.getSlot().getIndex()] * this.durability;
     }
 
     @Override

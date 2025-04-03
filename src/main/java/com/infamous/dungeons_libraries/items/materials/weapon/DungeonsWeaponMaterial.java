@@ -2,6 +2,8 @@ package com.infamous.dungeons_libraries.items.materials.weapon;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
@@ -25,7 +27,7 @@ public class DungeonsWeaponMaterial implements Tier {
     ).apply(instance, DungeonsWeaponMaterial::new));
 
     private final String name;
-    private final SoundEvent equipSound;
+    private final Holder<SoundEvent> equipSound;
     private final int durability;
     private final int enchantability;
     private final ResourceLocation repairItemResourceLocation;
@@ -34,7 +36,7 @@ public class DungeonsWeaponMaterial implements Tier {
     private final float attackDamageBonus;
     private final int level;
 
-    public DungeonsWeaponMaterial(String name, SoundEvent equipSound, int durability, int enchantability, ResourceLocation repairItemResourceLocation, float attackSpeed, float attackDamageBonus, int level) {
+    public DungeonsWeaponMaterial(String name, Holder<SoundEvent> equipSound, int durability, int enchantability, ResourceLocation repairItemResourceLocation, float attackSpeed, float attackDamageBonus, int level) {
         this.name = name;
         this.equipSound = equipSound;
         this.durability = durability;
@@ -55,7 +57,7 @@ public class DungeonsWeaponMaterial implements Tier {
         return name;
     }
 
-    public SoundEvent getEquipSound() {
+    public Holder<SoundEvent> getEquipSound() {
         return equipSound;
     }
 

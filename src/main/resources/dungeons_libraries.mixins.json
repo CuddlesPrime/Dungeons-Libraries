@@ -27,7 +27,6 @@
   ],
   "client": [
     "AbstractClientPlayerMixin",
-    "GeoEntityRendererMixin",
     "ItemInHandRendererMixin",
     "LivingRendererMixin",
     "MinecraftMixin",
