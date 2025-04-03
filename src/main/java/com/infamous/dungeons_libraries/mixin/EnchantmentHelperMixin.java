@@ -5,7 +5,6 @@ import com.infamous.dungeons_libraries.capabilities.builtinenchants.BuiltInEncha
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -19,14 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Mixin(EnchantmentHelper.class)
 public abstract class EnchantmentHelperMixin {
-
-    private static final Optional<Enchantment> enchantmentOnIteration = null;
-    private static final ItemStack itemStackOnIteration = null;
-
     @Inject(method = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getTagEnchantmentLevel(Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I", remap = false,
             at = @At(value = "RETURN", ordinal = 1), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private static void dungeonslibraries_getItemEnchantmentLevelEnchantmentFound(Enchantment enchantment, ItemStack itemStack, CallbackInfoReturnable<Integer> cir, ResourceLocation enchantmentRL, ListTag listNbt, int i, CompoundTag compoundnbt, ResourceLocation found) {
@@ -57,7 +51,7 @@ public abstract class EnchantmentHelperMixin {
 
     @Redirect(method = "runIterationOnItem(Lnet/minecraft/world/item/enchantment/EnchantmentHelper$EnchantmentVisitor;Lnet/minecraft/world/item/ItemStack;)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getAllEnchantments()Ljava/util/Map;", remap = false))
-    private static Map dungeonslibraries_getAllEnchantments(ItemStack itemStack) {
+    private static Map<Enchantment, Integer> dungeonslibraries_getAllEnchantments(ItemStack itemStack) {
         Map<Enchantment, Integer> enchantmentMap = itemStack.getAllEnchantments();
         Map<Enchantment, Integer> newEnchantmentMap = new HashMap<>(enchantmentMap);
         BuiltInEnchantments cap = BuiltInEnchantmentsHelper.getBuiltInEnchantmentsCapability(itemStack);

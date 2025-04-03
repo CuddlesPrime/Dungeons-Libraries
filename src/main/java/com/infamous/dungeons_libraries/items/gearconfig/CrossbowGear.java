@@ -64,7 +64,7 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
 
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
+        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getAttributeModifiers(pEquipmentSlot, getDefaultInstance());
     }
 
 
@@ -75,7 +75,7 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
     @Override
     public void onUseTick(Level world, LivingEntity livingEntity, ItemStack stack, int timeLeft) {
         if (!world.isClientSide) {
-            int quickChargeLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
+            int quickChargeLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
 
             CrossbowItemInvoker crossbowItemInvoker = (CrossbowItemInvoker) this;
             SoundEvent quickChargeSoundEvent = crossbowItemInvoker.callGetStartSound(quickChargeLevel);
@@ -124,7 +124,7 @@ public class CrossbowGear extends CrossbowItem implements IRangedWeapon, IReload
     }
 
     public float getCrossbowChargeTime(@Nullable LivingEntity livingEntity, ItemStack stack) {
-        int quickChargeLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
+        int quickChargeLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.QUICK_CHARGE, stack);
         float minTime = 1;
         CrossbowEvent.ChargeTime event = new CrossbowEvent.ChargeTime(livingEntity, stack, this.getDefaultChargeTime());
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);

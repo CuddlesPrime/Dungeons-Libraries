@@ -43,7 +43,7 @@ public abstract class CrossbowItemMixin {
 
     @ModifyConstant(method = "tryLoadProjectiles", constant = @Constant(intValue = 3, ordinal = 0))
     private static int handleExtraMultishot(int defaultValue, LivingEntity livingEntity, ItemStack itemStack){
-        return 1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MULTISHOT, itemStack) * 2;
+        return 1 + EnchantmentHelper.getTagEnchantmentLevel(Enchantments.MULTISHOT, itemStack) * 2;
     }
 
     @Inject(method = "getArrow", at = @At(value = "RETURN"))
@@ -52,17 +52,17 @@ public abstract class CrossbowItemMixin {
         RangedAttackHelper.multiplyRangedDamage(shooter, returnValue);
 
         // allow power, punch and flame to be applied to this arrow like bows
-        int powerLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, weapon);
+        int powerLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.POWER_ARROWS, weapon);
         if (powerLevel > 0) {
             returnValue.setBaseDamage(returnValue.getBaseDamage() + (double) powerLevel * 0.5D + 0.5D);
         }
 
-        int punchLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, weapon);
+        int punchLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PUNCH_ARROWS, weapon);
         if (punchLevel > 0) {
             returnValue.setKnockback(punchLevel);
         }
 
-        int flameLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, weapon);
+        int flameLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.FLAMING_ARROWS, weapon);
         if (flameLevel > 0) {
             returnValue.setSecondsOnFire(100);
         }

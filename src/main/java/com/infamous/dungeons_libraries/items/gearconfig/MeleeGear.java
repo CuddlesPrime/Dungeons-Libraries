@@ -10,6 +10,7 @@ import com.infamous.dungeons_libraries.mixin.ItemAccessor;
 import com.infamous.dungeons_libraries.mixin.TieredItemAccessor;
 import com.infamous.dungeons_libraries.utils.DescriptionHelper;
 import com.infamous.dungeons_libraries.utils.MojankHelper;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
@@ -24,7 +25,6 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -86,7 +86,7 @@ public class MeleeGear extends TieredItem implements IMeleeWeapon, IComboWeapon,
 
     @Override
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
+        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getAttributeModifiers(pEquipmentSlot, getDefaultInstance());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -134,8 +134,11 @@ public class MeleeGear extends TieredItem implements IMeleeWeapon, IComboWeapon,
         if (p_150893_2_.is(Blocks.COBWEB) || p_150893_2_.is(BlockTags.LEAVES)) {
             return 15.0F;
         } else {
-            Material material = p_150893_2_.getMaterial();
-            return material != Material.PLANT && material != Material.REPLACEABLE_PLANT && !p_150893_2_.is(BlockTags.LEAVES) && material != Material.VEGETABLE ? 1.0F : 1.5F;
+            // Check if block is part of specific tags rather than using Material
+            if (p_150893_2_.is(BlockTags.FLOWERS) || p_150893_2_.is(BlockTags.REPLACEABLE) || p_150893_2_.is(BlockTags.CROPS)) {
+                return 1.5F;
+            }
+            return 1.0F;
         }
     }
 

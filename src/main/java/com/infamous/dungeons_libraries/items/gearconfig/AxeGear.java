@@ -71,12 +71,6 @@ public class AxeGear extends ToolGear {
         return block != null ? block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, originalState.getValue(RotatedPillarBlock.AXIS)) : null;
     }
 
-    private Optional<BlockState> getStripped(BlockState p_150691_) {
-        return Optional.ofNullable(AxeItemAccessor.getSTRIPPABLES().get(p_150691_.getBlock())).map((p_150689_) -> {
-            return p_150689_.defaultBlockState().setValue(RotatedPillarBlock.AXIS, p_150691_.getValue(RotatedPillarBlock.AXIS));
-        });
-    }
-
     @Override
     public boolean canPerformAction(ItemStack stack, net.minecraftforge.common.ToolAction toolAction) {
         return net.minecraftforge.common.ToolActions.DEFAULT_AXE_ACTIONS.contains(toolAction);

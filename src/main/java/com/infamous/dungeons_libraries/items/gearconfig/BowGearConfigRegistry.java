@@ -6,8 +6,6 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Map;
 
-import static com.infamous.dungeons_libraries.DungeonsLibraries.MODID;
-
 public class BowGearConfigRegistry {
 
     public static final CodecJsonDataManager<BowGearConfig> BOW_GEAR_CONFIGS = new CodecJsonDataManager<>("gearconfig/bow", BowGearConfig.CODEC);

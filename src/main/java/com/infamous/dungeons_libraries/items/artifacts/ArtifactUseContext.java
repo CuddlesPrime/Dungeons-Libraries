@@ -19,7 +19,7 @@ public class ArtifactUseContext {
     private final ItemStack itemStack;
 
     public ArtifactUseContext(Player p_i50033_1_, InteractionHand p_i50033_2_, BlockHitResult p_i50033_3_) {
-        this(p_i50033_1_.level, p_i50033_1_, p_i50033_1_.getItemInHand(p_i50033_2_), p_i50033_3_);
+        this(p_i50033_1_.level(), p_i50033_1_, p_i50033_1_.getItemInHand(p_i50033_2_), p_i50033_3_);
     }
 
     public ArtifactUseContext(Level p_i50034_1_, @Nullable Player p_i50034_2_, ItemStack p_i50034_4_, BlockHitResult p_i50034_5_) {

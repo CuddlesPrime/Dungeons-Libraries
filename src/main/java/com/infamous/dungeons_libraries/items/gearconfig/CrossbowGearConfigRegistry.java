@@ -6,8 +6,6 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Map;
 
-import static com.infamous.dungeons_libraries.DungeonsLibraries.MODID;
-
 public class CrossbowGearConfigRegistry {
 
     public static final CodecJsonDataManager<BowGearConfig> CROSSBOW_GEAR_CONFIGS = new CodecJsonDataManager<>("gearconfig/crossbow", BowGearConfig.CODEC);

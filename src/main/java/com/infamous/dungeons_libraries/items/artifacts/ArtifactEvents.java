@@ -44,7 +44,7 @@ public class ArtifactEvents {
         }
         ArtifactUsage cap = ArtifactUsageHelper.getArtifactUsageCapability(event.player);
         if (cap.isUsingArtifact() && cap.getUsingArtifact().getItem() instanceof ArtifactItem) {
-            cap.getUsingArtifact().getItem().onUseTick(event.player.level, event.player, cap.getUsingArtifact(), cap.getUsingArtifactRemaining());
+            cap.getUsingArtifact().getItem().onUseTick(event.player.level(), event.player, cap.getUsingArtifact(), cap.getUsingArtifactRemaining());
             cap.setUsingArtifactRemaining(cap.getUsingArtifactRemaining() - 1);
         }
     }
@@ -66,7 +66,7 @@ public class ArtifactEvents {
     }
 
     private static void stopUsingAllArtifacts(Player player) {
-        CuriosApi.getCuriosHelper().getCuriosHandler(player).ifPresent(iCuriosItemHandler -> {
+        CuriosApi.getCuriosInventory(player).ifPresent(iCuriosItemHandler -> {
             Optional<ICurioStacksHandler> artifactStackHandler = iCuriosItemHandler.getStacksHandler("artifact");
             if (artifactStackHandler.isPresent()) {
                 int slots = artifactStackHandler.get().getStacks().getSlots();

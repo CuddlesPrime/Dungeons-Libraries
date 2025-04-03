@@ -48,13 +48,13 @@ public abstract class BowItemMixin {
             originalArrow.setCritArrow(true);
         }
 
-        int piercingLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PIERCING, stack);
+        int piercingLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.PIERCING, stack);
         if (piercingLevel > 0) {
             originalArrow.setPierceLevel((byte) piercingLevel);
         }
 
         // Finished making changes to original arrow - now to the multishot stuff!
-        int multishotLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MULTISHOT, stack);
+        int multishotLevel = EnchantmentHelper.getTagEnchantmentLevel(Enchantments.MULTISHOT, stack);
         if(multishotLevel > 0){
             int additionalArrowCount = multishotLevel * 2;
             for(int arrowIndex = 1; arrowIndex <= additionalArrowCount; arrowIndex++){
