@@ -44,7 +44,7 @@ public class SummonHelper {
     }
 
     public static Entity summonEntity(LivingEntity leader, BlockPos position, EntityType<?> entityType) {
-        Entity entity = entityType.create(leader.level);
+        Entity entity = entityType.create(leader.level());
         if (entity != null) {
             Follower summonable = getFollowerCapability(entity);
             if (addSummonedMob(leader, entity)) {
@@ -64,7 +64,7 @@ public class SummonHelper {
         if (entity instanceof Mob mobEntity) {
             addFollowerGoals(mobEntity);
         }
-        master.level.addFreshEntity(entity);
+        master.level().addFreshEntity(entity);
     }
 
     public static void addSummonGoals(Mob mobEntity) {

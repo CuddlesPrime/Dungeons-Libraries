@@ -72,7 +72,7 @@ public class ArrowHelper {
     }
 
     public static boolean hasEnchantment(ItemStack stack, Enchantment enchantment) {
-        return enchantment != null && EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) > 0;
+        return enchantment != null && EnchantmentHelper.getTagEnchantmentLevel(enchantment, stack) > 0;
     }
 
     public static boolean hasEnchantment(LivingEntity entity, Enchantment enchantment) {

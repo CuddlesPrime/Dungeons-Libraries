@@ -23,7 +23,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -43,19 +42,18 @@ public class DungeonsLibraries {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "dungeons_libraries";
 
-    public DungeonsLibraries() {
+    public DungeonsLibraries(IEventBus modEventBus, ModLoadingContext modLoadingContext) {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> {
             return GuiElementConfigRegistry::initGuiElementConfigs;
         });
         // Register the setup method for modloading
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, DungeonsLibrariesConfig.COMMON_SPEC);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        modLoadingContext.registerConfig(ModConfig.Type.COMMON, DungeonsLibrariesConfig.COMMON_SPEC);
+        modEventBus.addListener(this::setup);
         // Register the doClientStuff method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        modEventBus.addListener(this::doClientStuff);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ItemTagWrappers.init();
         AttributeRegistry.ATTRIBUTES.register(modEventBus);
         ENTITY_TYPES.register(modEventBus);
