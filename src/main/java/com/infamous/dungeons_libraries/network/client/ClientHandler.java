@@ -41,7 +41,7 @@ public class ClientHandler {
         NetworkEvent.Context context = contextSupplier.get();
         if (context.getDirection().getReceptionSide() == LogicalSide.CLIENT) {
             context.enqueueWork(() -> {
-                Entity entity = Minecraft.getInstance().player.level.getEntity(message.getEntityId());
+                Entity entity = Minecraft.getInstance().player.level().getEntity(message.getEntityId());
                 if (entity instanceof LivingEntity) {
                     EliteMob cap = EliteMobHelper.getEliteMobCapability(entity);
                     cap.setElite(message.isElite());
