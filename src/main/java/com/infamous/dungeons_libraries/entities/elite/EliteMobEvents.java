@@ -10,7 +10,6 @@ import com.infamous.dungeons_libraries.network.NetworkHandler;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -23,7 +22,6 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingConversionEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -92,19 +90,6 @@ public class EliteMobEvents {
     private static void setItemSlot(LivingEntity entity, EquipmentSlot slotType, ItemStack item) {
         if (!item.equals(ItemStack.EMPTY)) {
             entity.setItemSlot(slotType, item);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onEntityEventSize(EntityEvent.Size event) {
-        Entity entity = event.getEntity();
-
-        EliteMob cap = EliteMobHelper.getEliteMobCapability(entity);
-        if (cap.isElite()) {
-            float totalWidth = event.getNewSize().width * SIZE_ADJUSTMENT;
-            float totalHeight = event.getNewSize().height * SIZE_ADJUSTMENT;
-            event.setNewEyeHeight(event.getNewEyeHeight() * SIZE_ADJUSTMENT);
-            event.setNewSize(EntityDimensions.fixed(totalWidth, totalHeight));
         }
     }
 

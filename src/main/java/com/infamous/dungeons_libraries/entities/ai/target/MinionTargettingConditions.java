@@ -15,6 +15,6 @@ public class MinionTargettingConditions extends TargetingConditions {
     }
 
     public boolean test(@Nullable LivingEntity attacker, LivingEntity target) {
-        return super.test(attacker, target) && (target.canBeSeenAsEnemy() || target.level.getDifficulty() != Difficulty.PEACEFUL) && attacker.canAttack(target) && !isAlly(attacker, target);
+        return super.test(attacker, target) && (target.canBeSeenAsEnemy() || target.level().getDifficulty() != Difficulty.PEACEFUL) && attacker.canAttack(target) && !isAlly(attacker, target);
     }
 }

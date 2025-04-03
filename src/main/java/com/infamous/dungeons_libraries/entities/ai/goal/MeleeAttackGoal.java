@@ -20,7 +20,6 @@ public class MeleeAttackGoal extends Goal {
     private double pathedTargetZ;
     private int ticksUntilNextPathRecalculation;
     private int ticksUntilNextAttack;
-    private final int attackInterval = 20;
     private long lastCanUseCheck;
     private int failedPathFindingPenalty = 0;
     private final boolean canPenalize = false;
@@ -37,7 +36,7 @@ public class MeleeAttackGoal extends Goal {
      * method as well.
      */
     public boolean canUse() {
-        long i = this.mob.level.getGameTime();
+        long i = this.mob.level().getGameTime();
         if (i - this.lastCanUseCheck < 20L) {
             return false;
         } else {

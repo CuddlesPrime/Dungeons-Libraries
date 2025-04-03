@@ -6,7 +6,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,8 +14,6 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public abstract class TotemBaseEntity extends Entity {
-    private final TargetingConditions entityTargeting = TargetingConditions.forCombat().range(8.0D).ignoreLineOfSight().ignoreInvisibilityTesting();
-
     protected int lifeTicks = 80;
     protected int deathTicks = 40;
     private float totemDeathAnimationO;
@@ -60,7 +57,7 @@ public abstract class TotemBaseEntity extends Entity {
     @Override
     public void tick() {
         super.tick();
-        if (this.level.isClientSide) {
+        if (this.level().isClientSide) {
 
             this.totemDeathAnimationO = this.totemDeathAnimation;
             if (this.isTotemDeath()) {
@@ -98,8 +95,8 @@ public abstract class TotemBaseEntity extends Entity {
 
     @Nullable
     public LivingEntity getOwner() {
-        if (this.owner == null && this.ownerUUID != null && this.level instanceof ServerLevel) {
-            Entity entity = ((ServerLevel) this.level).getEntity(this.ownerUUID);
+        if (this.owner == null && this.ownerUUID != null && this.level() instanceof ServerLevel) {
+            Entity entity = ((ServerLevel) this.level()).getEntity(this.ownerUUID);
             if (entity instanceof LivingEntity) {
                 this.owner = (LivingEntity) entity;
             }
