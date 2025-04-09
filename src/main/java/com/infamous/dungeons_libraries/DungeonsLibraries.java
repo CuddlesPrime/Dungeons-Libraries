@@ -14,6 +14,7 @@ import com.infamous.dungeons_libraries.items.gearconfig.MeleeGearConfigRegistry;
 import com.infamous.dungeons_libraries.items.materials.armor.DungeonsArmorMaterials;
 import com.infamous.dungeons_libraries.items.materials.weapon.WeaponMaterials;
 import com.infamous.dungeons_libraries.network.NetworkHandler;
+
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
