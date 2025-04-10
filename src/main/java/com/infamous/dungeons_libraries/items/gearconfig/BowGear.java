@@ -58,8 +58,11 @@ public class BowGear extends BowItem implements IRangedWeapon, IReloadableGear, 
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
-        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getAttributeModifiers(pEquipmentSlot, getDefaultInstance());
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+        if (slot == EquipmentSlot.MAINHAND) {
+            return this.defaultModifiers;
+        }
+            return super.getAttributeModifiers(slot, stack);
     }
 
     @Override
